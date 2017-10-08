@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Coin Index</title>
+  <title>Daoment - The Next Step In Crypto Index</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
   <meta name="robots" content="noindex,nofollow" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="description" content="The Daoment Cryptocurrency Index" />
   <link rel="stylesheet" type="text/css" href="/css/app.css" />
 </head>
 <body>
@@ -31,6 +32,11 @@
         <graph v-for="index in indices" :key="index.id" :index="index"></graph>
       </div>
     </div>
+    <footer class="footer">
+      <div class="container">
+        &copy; {{ date('Y') }} Daoment.
+      </div>
+    </footer>
   </div>
   <script type="text/javascript" src="/js/app.js"></script>
 </body>

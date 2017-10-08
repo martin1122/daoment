@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function() {
             \App\Index::recalculateAll();
-        })->everyMinute();
+        })->everyFiveMinutes();
     }
 
     /**
