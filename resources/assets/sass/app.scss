@@ -1,0 +1,64 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  font-weight: 300;
+}
+
+.table>thead>tr>th {
+  vertical-align: middle;
+}
+
+.jumbotron {
+  @extend .text-center;
+  padding-bottom: 0;
+  background: url(/images/background.jpg) center top no-repeat;
+  background-size: cover; 
+  .nav {
+    padding-top: $jumbotron-padding;
+  }
+}
+
+.graph__container {
+  position: relative;
+}
+
+.index {
+  @extend .text-center;
+  background: rgba(255,255,255,0.7);
+  border-radius: 0;
+}
+
+  .index__direction {
+    @extend .glyphicon;
+  }
+
+  .index__direction--up {
+    @extend .text-success;
+    @extend .glyphicon-arrow-up;
+  }
+  
+  .index__direction--down {
+    @extend .text-danger;
+    @extend .glyphicon-arrow-down;
+  }
+
+  .index__title {
+    color: $brand-primary;
+  }
+
+  .index__value {
+    color: $text-color;
+    font-weight: 400;
+    font-size: 1.4em;
+  }
+
+  .graph__description {
+    font-size: 1.25em;
+  }

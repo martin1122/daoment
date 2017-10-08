@@ -1,0 +1,51 @@
+
+// Body
+$body-bg: #f5f8fa;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: $laravel-border-color;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
+// Brands
+$brand-primary: #470481;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b;
+$brand-warning: #cbb956;
+$brand-danger: #bf5329;
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: "Roboto", sans-serif;
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #555;
+$headings-font-weight: 400;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+
+// Panels
+$panel-default-heading-bg: #fff;
+
+// Jumbotron
+$jumbotron-bg:  #ccc;
+$jumbotron-color: $body-bg;
+
+// Tabs
+$border-radius-base:                        0;
+$nav-tabs-border-color:                     transparent;
+$nav-tabs-link-hover-border-color:          $nav-tabs-border-color;
+$nav-tabs-active-link-hover-border-color:   $nav-tabs-border-color;
+$nav-tabs-justified-link-border-color:      $nav-tabs-border-color;
+$nav-tabs-active-link-hover-bg:             $body-bg;
