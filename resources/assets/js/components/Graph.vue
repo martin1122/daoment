@@ -31,6 +31,14 @@
         return this.index.name.toLowerCase().replace(/[^a-z-]+/, '-');
       }
     },
+    watch: {
+      index() {
+        var self = this;
+        self.chart.data.datasets[0].data = self.chartData;
+        self.chart.data.labels = self.chartLabels;
+        self.chart.update();
+      }
+    },
     mounted() {
       var self = this;
       var ctx = document.getElementById(`graph-${self.index.id}`);
