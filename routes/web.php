@@ -11,19 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-  return view('home', compact('indices'));
-});
+Route::get('/', 'HomeController@index');
 
-Route::get('/indices', function() {
-  $indices = App\Index::orderby('position', 'asc')->get();
-  foreach ($indices as $index) {
-    $index->history = $index->getHistory();
-    $history_count = count($index->history);
-    if ($history_count >= 2) {
-	    $index->increasing = ( $index->history[$history_count - 1]->value > $index->history[$history_count - 2]->value );
-	    $index->decreasing = ( $index->history[$history_count - 1]->value < $index->history[$history_count - 2]->value );
-    }
-  }
-  return $indices;
-});
+Route::get('/indices', 'IndexController@get');
+Route::get('/indices/{index}/chart', 'IndexController@chart');
+
+Route::get('coins', 'CoinController@get');

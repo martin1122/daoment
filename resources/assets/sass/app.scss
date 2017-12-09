@@ -1,5 +1,5 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
+@import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,500,600,700,800,900");
 
 // Variables
 @import "variables";
@@ -7,66 +7,148 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-body {
-  font-weight: 300;
-  min-height: 100vh;
-}
-
-.table>thead>tr>th {
-  vertical-align: middle;
-}
-
-.jumbotron {
-  @extend .text-center;
-  padding-bottom: 0;
-  background: url(/images/background.jpg) center top no-repeat;
-  background-size: cover; 
-  .nav {
-    padding-top: $jumbotron-padding;
-  }
-}
-
-.graph__container {
-  position: relative;
-}
-
-.index {
-  @extend .text-center;
-  background: rgba(255,255,255,0.7);
-  border-radius: 0;
-}
-
-  .index__direction {
-    @extend .glyphicon;
-  }
-
-  .index__direction--up {
-    @extend .text-success;
-    @extend .glyphicon-arrow-up;
-  }
-  
-  .index__direction--down {
-    @extend .text-danger;
-    @extend .glyphicon-arrow-down;
-  }
-
-  .index__title {
-    color: $brand-primary;
-  }
-
-  .index__value {
-    color: $text-color;
-    font-weight: 400;
-    font-size: 1.4em;
-  }
-
-  .graph__description {
-    font-size: 1.25em;
-  }
+// Font-awesome
+@import "~font-awesome/css/font-awesome.css";
 
 .footer {
   margin-top: 30px;
   padding: 30px 0;
   background: $brand-primary;
   color: white;
+}
+html, body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: 500;
+}
+
+header.doc-head{
+  .head-top{
+    background: #2f1b46;
+    padding: 4px 0;
+    .head-info-block{
+      display: inline-block;
+      background: #073142;
+      border-top: 1px solid #405f6b;
+      border-right: 1px solid #405f6b;
+      padding: 2px 15px 8px;
+      .top-info{
+        padding-bottom: 2px;
+        span{
+          color: white;
+          text-transform: uppercase;
+          font-size: 10px;
+        }
+      }
+      .persent{
+        color: #3bbb96;
+        &.red{
+          color: #fa889d;
+        }
+        i.fa{
+          font-size: 20px;
+        }
+        span{
+          font-size: 10px;
+          &.main{
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+  .head-bottom{
+    background: #9264cd;
+    padding: 5px;
+    a.logo{
+      color: #2c18a8;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 20px;
+    }
+    .contact-info{
+      padding-top: 5px;
+      padding-right: 30px;
+      color: white;
+      font-size: 12px;
+    }
+  }
+}
+.content-wrap{
+  background: #f2f3f5;
+  padding: 0 20px;
+  display: flex;
+  .content-inner{
+    background: #fff;
+    width: 100%;
+
+    .chart-layer{
+      padding: 10px 0 0;
+      p.ttl{
+        padding: 0 5px;
+        font-weight: bold;
+        span{
+          font-weight: normal;
+        }
+      }
+    }
+
+    .data-wrap{
+      width: 100%;
+      table.data-table{
+        width: 100%;
+        tbody{
+          tr{
+            &.top{
+              background: #f2fafe;
+              td{
+                padding: 10px 30px;
+                border-bottom: 0;
+                &:first-child{
+                  padding: 2px 10px;
+                  span{
+                    background: #fff;
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    padding: 10px 15px;
+                    font-weight: bold;
+                    line-height: 10px
+                  }
+                }
+              }
+            }
+            td{
+              padding: 10px 30px;
+              text-align: center;
+              font-size: 16px;
+              font-weight: bold;
+              border-bottom: 1px solid #ccc;
+              &:first-child{
+                text-align: left;
+                font-weight: 600;
+                font-size: 14px;
+              }
+              &.last{
+                text-align: right;
+                font-weight: normal;
+                font-size: 12px;
+                &.decr{
+                  color:#fa889d;
+                }
+                &.inc{
+                  color:#65caae;
+                }
+                p{
+                  margin-bottom: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

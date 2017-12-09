@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Index;
+use App\Models\Index;
+use App\Services\IndexService;
 use Illuminate\Console\Command;
 
 class RecalculateIndices extends Command
@@ -22,13 +23,19 @@ class RecalculateIndices extends Command
     protected $description = 'Recalculates the indices';
 
     /**
+     * @var IndexService
+     */
+    protected $indexService;
+
+    /**
      * Create a new command instance.
      *
-     * @return void
+     * @param IndexService $indexService
      */
-    public function __construct()
+    public function __construct(IndexService $indexService)
     {
         parent::__construct();
+        $this->indexService = $indexService;
     }
 
     /**
@@ -38,6 +45,6 @@ class RecalculateIndices extends Command
      */
     public function handle()
     {
-        Index::recalculateAll();
+        $this->indexService->recalculateAll();
     }
 }

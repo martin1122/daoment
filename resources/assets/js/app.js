@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -19,29 +18,9 @@ window.Vue = require('vue');
 
 Vue.component('index', require('./components/Index.vue'));
 Vue.component('graph', require('./components/Graph.vue'));
+Vue.component('coins', require('./components/coins'));
+Vue.component('indices', require('./app/home/indices'));
 
 const app = new Vue({
     el: '#app',
-    data: function() {
-      return {
-        indices: []
-      }
-    },
-    created() {
-      this.loadIndices();
-    },
-    mounted() {
-      var self = this;
-      setInterval(() => {
-        self.loadIndices();
-      }, 5000);
-    },
-    methods: {
-      loadIndices() {
-        var self = this;
-        axios.get('/indices').then(function(response) {
-          self.indices = response.data;
-        });
-      }
-    }
 });

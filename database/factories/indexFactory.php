@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\Index;
 use Faker\Generator as Faker;
 
-$factory->define(App\index::class, function (Faker $faker) {
+$factory->define(index::class, function (Faker $faker) {
     return [
         //
     ];
