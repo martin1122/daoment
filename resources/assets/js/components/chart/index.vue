@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="graph__container">
-            <canvas :id="'index'" width="1140" height="300"></canvas>
+            <canvas :id="'index'" width="1140" height="400"></canvas>
         </div>
     </div>
 </template>
