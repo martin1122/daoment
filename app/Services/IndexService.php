@@ -10,6 +10,7 @@ namespace App\Services;
 
 use App\Models\Index;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class IndexService
 {
@@ -38,7 +39,7 @@ class IndexService
     /**
      * @param Index $index
      * @param string $period
-     * @return static
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getChartData(Index $index, $period = 'day')
     {
@@ -46,40 +47,40 @@ class IndexService
         switch ($period) {
             case 'day':
                 $date = '-3 day';
-                $format = 'H:m:s';
+                $format = '%Y-%m-%d %H:%i:%s';
                 break;
             case 'month':
                 $date = '-1 month';
-                $format = 'M d';
+                $format = '%Y-%m-%d %H';
+                break;
+            case '3 months':
+                $date = '-3 month';
+                $format = '%Y-%m-%d %H';
                 break;
             case 'year':
                 $date = '-1 year';
-                $format = 'M';
+                $format = '%Y-%m-%d %H';
+                break;
+            case '5 years':
+                $date = '-5 years';
+                $format = '%Y-%m-%d %H';
+                break;
+            case 'max':
+                $date = '-20 years';
+                $format = '%Y-%m-%d %H';
                 break;
         }
 
-        //$date = Carbon::now()->subDays($days);
         $date = Carbon::parse($date);
 
-        $data = $index->history()->where('created_at', '>=', $date)->orderBy('created_at', 'ASC')->get()
-                ->groupBy(function ($date) use ($format) {
-                    return Carbon::parse($date->created_at)->format($format);
-                });
+        $data = $index->history()->where('created_at', '>=', $date)
+            ->select('*')
+            ->orderBy('created_at', 'ASC')
+            ->selectRaw('date_format(created_at, \'' . $format . '\' ) date')
+            ->groupBy('date')
+            ->get();
 
-        $dataSet = [];
-        $labels = [];
-
-        foreach ($data as $key => $item) {
-
-            $labels[] = $key;
-            foreach ($item as $value) {
-                $dataSet[] = $value->value;
-            }
-
-        }
-
-        return compact('dataSet', 'labels');
-
+        return $data;
     }
 
     /**

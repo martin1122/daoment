@@ -25,18 +25,21 @@ export default {
     }*/
     type: 'line',
     data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: [],
         datasets: [{
             label: "Price",
             data: [],
-            fill: true,
-            borderColor: '#AAE2D2'
+            fill: false,
+            borderColor: '#AAE2D2',
+            radius: 0,
+            lineTension: 0,
         }]
     },
     options: {
+        period: 'day',
         responsive: true,
         legend: {
-            display: false
+            display: true
         },
         title:{
             display: true,
@@ -54,17 +57,32 @@ export default {
         scales: {
             xAxes: [{
                 display: true,
-                ticks2: {
+                ticks: {
                     callback: function(dataLabel, index) {
-                        // Hide the label of every 2nd dataset. return null to hide the grid line too
+                        var period = this.chart.options.period
 
-                        //return index % 10 === 0 ? new Date(dataLabel).toLocaleDateString('en-En', {month:'short', year:'numeric'}): '';
+                        if(period ==='day') {
+                            return index % 10 === 0 ? new Date(dataLabel).toLocaleTimeString('en', {hour: 'numeric', minute: 'numeric'}): '';
+                        } else if(period === 'month') {
+                            return index % 30 === 0 ? new Date(dataLabel).toLocaleDateString('en-En', {day:'2-digit', month: 'short'}): '';
+                        } else if(period === '3 months') {
+                            return index % 50 === 0 ? new Date(dataLabel).toLocaleDateString('en-En', {month:"short", day:"2-digit"}): '';
+                        } else if(period === 'year') {
+                            return index % 50 === 0 ? new Date(dataLabel).toLocaleDateString('en-En', {month:"short"}): '';
+                        } else if(period === '5 years') {
+                            return index % 50 === 0 ? new Date(dataLabel).toLocaleDateString('en-En', {month:"short", year:"numeric"}): '';
+                        } else if(period === 'max') {
+                            return index % 50 === 0 ? new Date(dataLabel).toLocaleDateString('en-En', {month:"short", year:"numeric"}): '';
+                        }
+
+                        return index % 50 === 0 ? dataLabel : '';
                     }
                 }
             }],
             yAxes: [{
                 display: true,
-                beginAtZero: false
+                beginAtZero: true,
+                fullWidth: true,
             }]
         },
 

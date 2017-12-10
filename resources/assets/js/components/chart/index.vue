@@ -12,11 +12,12 @@
     export default {
         data() {
             return {
-                options: options
+                options: options,
+                chart: {}
             }
         },
 
-        props: ['data', 'labels'],
+        props: ['data', 'labels', 'period', 'selectedIndex'],
 
         mounted() {
             this.initChart()
@@ -25,14 +26,21 @@
         methods: {
             initChart() {
                 this.options.data.datasets[0].data = this.data
+                this.options.data.datasets[0].label = this.selectedIndex.name
                 this.options.data.labels = this.labels
+                this.options.options.period = this.period
 
                 this.chart = new Chart(document.getElementById('index'), this.options);
+            },
+            updateChart() {
+                this.chart.destroy();
+
+                this.initChart()
             }
         },
 
         watch: {
-            data: 'initChart'
+            data: 'updateChart'
         }
     }
 </script>

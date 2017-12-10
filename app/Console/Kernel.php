@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\RecalculateCoins;
+use App\Console\Commands\RecalculateIndices;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,7 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('indices:recalculate')->everyFiveMinutes();
+        $schedule->command(RecalculateIndices::class)->everyFiveMinutes();
+        $schedule->command(RecalculateCoins::class)->everyTenMinutes();
     }
 
     /**

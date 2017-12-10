@@ -6,13 +6,13 @@
                 <div class="col-md-offset-3">
                     <div class="col-md-1"><a href="#" @click.prevent="setPeriod('day')">1 day</a></div>
                     <div class="col-md-1"><a href="#" @click.prevent="setPeriod('month')">1 month</a></div>
-                    <div class="col-md-1"><a href="#" @click.prevent="setPeriod('-3 month')">3 month</a></div>
-                    <div class="col-md-1"><a href="#" @click.prevent="setPeriod('-1 year')">1 year</a></div>
-                    <div class="col-md-1"><a href="#" @click.prevent="setPeriod('-5 years')">5 years</a></div>
-                    <div class="col-md-1"><a href="#">max</a></div>
+                    <div class="col-md-1"><a href="#" @click.prevent="setPeriod('3 months')">3 month</a></div>
+                    <div class="col-md-1"><a href="#" @click.prevent="setPeriod('year')">1 year</a></div>
+                    <div class="col-md-1"><a href="#" @click.prevent="setPeriod('5 years')">5 years</a></div>
+                    <div class="col-md-1"><a href="#" @click.prevent="setPeriod('max')">max</a></div>
                 </div>
             </div>
-            <chart :data="chartData" :labels="chartLabels" v-if="history"></chart>
+            <chart :data="chartData" :labels="chartLabels" :period="period" :selected-index="selectedIndex" v-if="history"></chart>
         </div>
 
         <div class="data-wrap">
@@ -48,8 +48,8 @@
                 history: [],
                 period: 'day',
                 format: '',
-                chartData: [],
-                chartLabels: []
+                //chartData: [],
+                //chartLabels: []
             }
         },
 
@@ -60,8 +60,8 @@
         methods: {
             getIndices() {
                 axios.get('/indices').then(response => {
+                    this.selectedIndex = response.data[0]
                     this.indices = response.data;
-                    this.selectedIndex = this.indices[0]
                 });
 
                 /*setInterval(() => {
@@ -78,8 +78,10 @@
                 }
 
                 axios.get('/indices/' + this.selectedIndex.id + '/chart', params).then(response => {
-                    this.chartData = response.data.dataSet
-                    this.chartLabels = response.data.labels
+                    this.history = response.data
+
+                    //this.chartData = response.data.dataSet
+                    //this.chartLabels = response.data.labels
                 });
             },
 
@@ -93,10 +95,10 @@
         },
 
         computed: {
-            chartData2() {
+            chartData() {
                 return _.flatMap(this.history, 'value');
             },
-            chartLabels2() {
+            chartLabels() {
                 return _.flatMap(this.history, 'created_at');
             },
         },
