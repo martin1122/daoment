@@ -27,9 +27,9 @@ export default {
     data: {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [{
-            label: "My First dataset",
+            label: "Price",
             data: [],
-            fill: false,
+            fill: true,
             borderColor: '#AAE2D2'
         }]
     },
@@ -54,10 +54,16 @@ export default {
         scales: {
             xAxes: [{
                 display: true,
+                ticks2: {
+                    callback: function(dataLabel, index) {
+                        // Hide the label of every 2nd dataset. return null to hide the grid line too
 
+                        //return index % 10 === 0 ? new Date(dataLabel).toLocaleDateString('en-En', {month:'short', year:'numeric'}): '';
+                    }
+                }
             }],
             yAxes: [{
-                display: false,
+                display: true,
                 beginAtZero: false
             }]
         },

@@ -32,7 +32,7 @@ class IndexService
      */
     public function get()
     {
-        return $this->model->orderby('position', 'asc')->withCount('history')->get();
+        return $this->model->orderby('position', 'asc')->get();
     }
 
     /**
@@ -45,7 +45,7 @@ class IndexService
 
         switch ($period) {
             case 'day':
-                $date = '-1 day';
+                $date = '-3 day';
                 $format = 'H:m:s';
                 break;
             case 'month':
@@ -128,6 +128,7 @@ class IndexService
 
             $this->recalculate($index, $coins);
         }
+
         return true;
     }
 

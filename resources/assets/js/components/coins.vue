@@ -9,7 +9,7 @@
                 <i class="fa fa-angle-down" v-if="coin.data.percent_change_1h < 0"></i>
                 <i class="fa fa-angle-up" v-else></i>
                 <span class="main">{{ coin.data.percent_change_1h }}%</span>
-                <span>0.00057</span>
+                <span>{{ Math.round(coin.data['price_' + coin.convert.toLowerCase()] * coin.data.percent_change_1h) / 100 }}</span>
             </div>
         </div>
     </div>

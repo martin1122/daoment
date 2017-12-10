@@ -19,14 +19,16 @@
             <table class="data-table">
                 <tbody>
                     <tr class="top" v-for="item in indices">
-                        <td class="name"><a href="#" @click.prevent="setSelectedIndex(item)">{{ item.name }}</a></td>
-                        <td>2629.27</td>
-                        <td class="last inc decr">
-                            <p><i class="fa fa-caret-down"></i> -0.30</p>
-                            <span>(-0.01%)</span>
-
-                            <p><i class="fa fa-caret-up"></i> 27.9</p>
-                            <span>(0.48%)</span>
+                        <td class="name">
+                            <a href="#" @click.prevent="setSelectedIndex(item)">{{ item.name }}</a>
+                        </td>
+                        <td>{{ item.current_value }}</td>
+                        <td class="last decr" :class="{'inc': item.different.index > 0}">
+                            <p>
+                                <i class="fa fa-caret-down" :class="{'fa-caret-up': item.different.index > 0}"></i>
+                                {{ item.different.index }}
+                            </p>
+                            <span>({{ item.different.percent }}%)</span>
                         </td>
                     </tr>
                 </tbody>

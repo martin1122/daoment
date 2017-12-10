@@ -11,13 +11,25 @@ class Index extends Model
     /**
      * @var array
      */
-    //protected $appends = ['increasing', 'decreasing'];
+    protected $appends = ['different'];
 
     /**
-     * @var
+     * The "booting" method of the model.
+     *
+     * @return void
      */
-    //protected $historyCount = 0;
+    public static function boot()
+    {
+        parent::boot();
 
+        self::updated(function ($model) {
+            $index_value = new IndexValue();
+            $index_value->index_id = $model->id;
+            $index_value->value = $model->current_value;
+            $index_value->created_at = $model->updated_at;
+            $index_value->save();
+        });
+    }
 
     /**
      * @return HasMany
@@ -28,38 +40,16 @@ class Index extends Model
     }
 
     /**
-     * @return bool|mixed
+     * @return array
      */
-    public function getIncreasingAttribute()
+    public function getDifferentAttribute()
     {
-        $increasing = 0;
+        $last = $this->history()->latest()->first();
+        $preLast = $this->history()->latest()->skip(1)->first();
 
-        if(!$this->historyCount) {
-            $this->historyCount = $this->history->count();
-        }
+        $index = round($last->value - $preLast->value, 2);
+        $percent = round($last->value / $preLast->value, 2);
 
-        if ($this->historyCount >= 2) {
-            $increasing = ( $this->history[$this->historyCount - 1]->value > $this->history[$this->historyCount - 2]->value );
-        }
-
-        return $increasing;
-    }
-
-    /**
-     * @return bool|mixed
-     */
-    public function getDecreasingAttribute()
-    {
-        $decreasing = 0;
-
-        if(!$this->historyCount) {
-            $this->historyCount = $this->history->count();
-        }
-
-        if ($this->historyCount >= 2) {
-            $decreasing = ( $this->history[$this->historyCount - 1]->value < $this->history[$this->historyCount - 2]->value );
-        }
-
-        return $decreasing;
+        return compact('index', 'percent');
     }
 }
