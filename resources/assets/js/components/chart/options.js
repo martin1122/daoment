@@ -1,28 +1,4 @@
 export default {
-    /*type: 'line',
-    data: {
-        labels: self.chartLabels,
-        datasets: [{
-            label: false,
-            data: [],
-            fill: false,
-            lineTension: 0.1,
-            borderColor: '#AAE2D2'
-        }]
-    },
-    options: {
-        legend: {
-            display: false
-        },
-        scales: {
-            // yAxes: [{
-            //   display: false
-            // }],
-            xAxes: [{
-                display: false
-            }]
-        }
-    }*/
     type: 'line',
     data: {
         labels: [],
@@ -53,7 +29,6 @@ export default {
             mode: 'nearest',
             intersect: true
         },
-
         scales: {
             xAxes: [{
                 display: true,
@@ -85,22 +60,5 @@ export default {
                 fullWidth: true,
             }]
         },
-
-        scales2: {
-            xAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Month'
-                }
-            }],
-            yAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Value'
-                }
-            }]
-        }
     }
 }

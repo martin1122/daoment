@@ -45,10 +45,6 @@ class IndexService
     {
 
         switch ($period) {
-            case 'day':
-                $date = '-3 day';
-                $format = '%Y-%m-%d %H:%i:%s';
-                break;
             case 'month':
                 $date = '-1 month';
                 $format = '%Y-%m-%d %H';
@@ -68,6 +64,11 @@ class IndexService
             case 'max':
                 $date = '-20 years';
                 $format = '%Y-%m-%d %H';
+                break;
+            case 'day':
+            default:
+                $date = '-3 day';
+                $format = '%Y-%m-%d %H:%i:%s';
                 break;
         }
 

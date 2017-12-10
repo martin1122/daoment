@@ -48,8 +48,6 @@
                 history: [],
                 period: 'day',
                 format: '',
-                //chartData: [],
-                //chartLabels: []
             }
         },
 
@@ -63,10 +61,6 @@
                     this.selectedIndex = response.data[0]
                     this.indices = response.data;
                 });
-
-                /*setInterval(() => {
-                  this.getIndices();
-                }, 15000);*/
             },
 
 
@@ -79,9 +73,6 @@
 
                 axios.get('/indices/' + this.selectedIndex.id + '/chart', params).then(response => {
                     this.history = response.data
-
-                    //this.chartData = response.data.dataSet
-                    //this.chartLabels = response.data.labels
                 });
             },
 
